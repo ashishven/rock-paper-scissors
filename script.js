@@ -1,5 +1,7 @@
 const CHOICES = ['rock', 'paper', 'scissors']
 
+game();
+
 
 function playRound(playerSelection, computerSelection)
 {
@@ -77,4 +79,49 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+
+function game()
+{
+
+    let playerScore =0
+    let computerScore =0 
+
+    for(let i=0;i<5;i++)
+    {
+        const playerSelection = prompt("Enter your choice")
+
+        if(playerSelection==null)
+        {
+            console.log("Game Ended")
+            break;
+            return
+        }
+
+        let computerSelection = getComputerChoice()
+
+        let result = playRound(playerSelection, computerSelection)
+
+        console.log(result)
+
+        if(result.includes('win'))
+        {
+
+            playerScore++
+        } else if(result.includes('lost')){
+            computerScore++
+        } else {
+            playerScore++
+            computerScore++
+        }
+    }
+
+    if(playerScore>computerScore)
+    {
+        console.log(`You won! Score: ${playerScore} - ${computerScore} `)
+    } else {
+        console.log(`You lost! Score: ${playerScore} - ${computerScore} `)
+    }
+
+   
+}
 
