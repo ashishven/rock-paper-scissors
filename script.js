@@ -93,7 +93,6 @@ function game()
         if(playerSelection==null)
         {
             console.log("Game Ended")
-            break;
             return
         }
 
@@ -105,21 +104,34 @@ function game()
 
         if(result.includes('win'))
         {
+            playerScore++
+        } else if(result.includes('lose')){
 
-            playerScore++
-        } else if(result.includes('lost')){
             computerScore++
-        } else {
+
+        } else if(result.includes('Draw')) {
+
+            //if draw both get point
             playerScore++
             computerScore++
+        } else {    
+
+            //if invalid choice cancel turn
+            i--;                                    
+            continue;
         }
     }
+
+
+
 
     if(playerScore>computerScore)
     {
         console.log(`You won! Score: ${playerScore} - ${computerScore} `)
-    } else {
+    } else if(playerScore<computerScore){
         console.log(`You lost! Score: ${playerScore} - ${computerScore} `)
+    } else {
+        console.log(`Draw! Score: ${playerScore} - ${computerScore} `)
     }
 
    
