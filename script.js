@@ -5,6 +5,9 @@ const CHOICES = ['rock', 'paper', 'scissors']
 
 const buttons = document.querySelectorAll('.selection');
 const displayResult = document.querySelector('.results')
+const scoreResult = document.querySelector('.score');
+let playerScore=0;
+let computerScore=0;
 
 buttons.forEach((button)=>{
 
@@ -15,7 +18,25 @@ buttons.forEach((button)=>{
 
         let result = playRound(playerSelection,computerSelection);
 
-        displayResult.textContent=result;
+
+
+        if(result[1]=="1")
+        {
+            playerScore++;
+
+        }
+        
+        if(result[1]=="0")
+        {
+
+            computerScore++;
+        } 
+
+
+        displayResult.textContent=result[0];
+        scoreResult.textContent=`Player: ${playerScore}  Computer: ${computerScore}`;
+
+        
 
     });
 });
@@ -34,15 +55,15 @@ function playRound(playerSelection, computerSelection)
     {
         if(computerSelection=="paper")
         {
-            return "You lose! Paper beats Rock"
+            return ["You lose! Paper beats Rock","0"];
         }
         
         if(computerSelection=="scissors")
         {
-            return "You win! Rock beats Scissors"
+            return ["You win! Rock beats Scissors","1"];
         } 
 
-            return "Draw!"
+            return ["Draw!","-1"];
         
     }
 
@@ -50,15 +71,15 @@ function playRound(playerSelection, computerSelection)
     {
         if(computerSelection=="paper")
         {
-            return "You win! Scissors beats Paper"
+            return ["You win! Scissors beats Paper","1"];
         }
         
         if(computerSelection=="rock")
         {
-            return "You lose! Rock beats Scissors"
+            return ["You lose! Rock beats Scissors","0"]
         } 
 
-            return "Draw!"
+            return ["Draw!","-1"];
     }
 
 
@@ -66,19 +87,18 @@ function playRound(playerSelection, computerSelection)
     {
         if(computerSelection=="rock")
         {
-            return "You win! Paper beats Rock"
+            return ["You win! Paper beats Rock","1"];
         }
         
         if(computerSelection=="scissors")
         {
-            return "You lose! Scissors beats Paper"
+            return ["You lose! Scissors beats Paper","0"];
         } 
 
-            return "Draw!"
+            return ["Draw!","-1"];
     }
 
-    return "Invalid choice"
-
+    return ["Error","e"];
 
 
     
