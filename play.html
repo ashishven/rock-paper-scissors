@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="play.css">
+</head>
+<body>
+
+
+    <div class="play-field">
+
+        <div class="img-container" id="rock1">
+            <img src="rock.svg" alt="">
+         
+        </div>
+
+      
+        <div class="img-container" id="rock2">
+            <img src="rock.svg" alt="">
+        </div>
+
+    </div>
+
+    <script>
+        const player= document.querySelector('#rock1');
+        const computer= document.querySelector('#rock2');
+        
+        
+        player.addEventListener('animationend', (e) =>{
+
+            console.log(e);
+          
+            player.querySelector('img').src="paper.svg";
+            computer.querySelector('img').src="scissors.svg";
+            
+        });
+
+
+    </script>
+   
+    
+</body>
+</html>

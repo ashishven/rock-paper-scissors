@@ -1,0 +1,56 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.play-field{
+    
+    display: flex;
+    justify-content: space-around;
+}
+
+
+img{
+    width: 100%;
+   
+}
+.img-container{
+    width: 15%
+}
+
+#rock1{
+    transform: rotate(90deg);
+    animation-name: rock1Anim;
+}
+
+#rock2{
+    transform: scaleX(-1) rotate(90deg);
+    animation-name: rock2Anim;
+}
+
+
+
+#rock2,#rock1{
+    animation-duration: 0.2s;
+    animation-iteration-count: 6;
+    animation-direction: alternate;
+  
+}
+
+@keyframes rock1Anim {
+    from { transform: rotate(90deg);}
+    to { transform: rotate(32deg);}
+  }
+
+  @keyframes rock2Anim {
+    from { transform: scaleX(-1) rotate(90deg);}
+    to { transform: scaleX(-1) rotate(32deg);}
+  }
+
+
+  .hide{
+    display: none;
+    }
+    
