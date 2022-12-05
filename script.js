@@ -2,6 +2,7 @@ const CHOICES = ['rock', 'paper', 'scissors']
 
 const startButton = document.querySelector("#start")
 const gameSection = document.querySelector('.game');
+const againButton = document.querySelector('#again');
 
 
 
@@ -11,6 +12,19 @@ startButton.addEventListener("click",()=>{
 
     gameSection.classList.toggle('hide');
     startButton.classList.toggle('hide');
+
+});
+
+
+againButton.addEventListener("click",()=>{
+
+    playerScore=0;
+    computerScore=0;
+    displayResult.textContent="";
+    winnerResult.textContent="";
+    scoreResult.textContent="";
+    againButton.classList.toggle('hide');
+    gameSection.classList.toggle('hide');
 
 });
 
@@ -168,5 +182,7 @@ function displayWinner(winner)
     gameSection.classList.add('hide');
 
     winnerResult.textContent=winner;
+
+    againButton.classList.toggle('hide');
 }
 
