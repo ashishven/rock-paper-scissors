@@ -6,6 +6,7 @@ const CHOICES = ['rock', 'paper', 'scissors']
 const buttons = document.querySelectorAll('.selection');
 const displayResult = document.querySelector('.results')
 const scoreResult = document.querySelector('.score');
+const winnerResult = document.querySelector('.winner')
 let playerScore=0;
 let computerScore=0;
 
@@ -24,12 +25,23 @@ buttons.forEach((button)=>{
         {
             playerScore++;
 
+            if(playerScore==5)
+            {
+                winnerResult.textContent="You win!"
+            }
+
         }
         
         if(result[1]=="0")
         {
 
             computerScore++;
+
+
+            if(computerScore==5)
+            {
+                winnerResult.textContent="You lose! "
+            }
         } 
 
 
