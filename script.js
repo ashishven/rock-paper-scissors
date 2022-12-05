@@ -1,6 +1,22 @@
 const CHOICES = ['rock', 'paper', 'scissors']
 
-//game();
+const startButton = document.querySelector("#start")
+const gameSection = document.querySelector('.game');
+
+
+
+
+startButton.addEventListener("click",()=>{
+
+
+    gameSection.classList.toggle('hide');
+    startButton.classList.toggle('hide');
+
+});
+
+
+
+
 
 
 const buttons = document.querySelectorAll('.selection');
@@ -27,7 +43,7 @@ buttons.forEach((button)=>{
 
             if(playerScore==5)
             {
-                winnerResult.textContent="You win!"
+                displayWinner("You won!")
             }
 
         }
@@ -40,7 +56,7 @@ buttons.forEach((button)=>{
 
             if(computerScore==5)
             {
-                winnerResult.textContent="You lose! "
+                displayWinner("You lose!")
             }
         } 
 
@@ -52,6 +68,13 @@ buttons.forEach((button)=>{
 
     });
 });
+
+
+
+
+
+
+
 
 
 
@@ -134,57 +157,16 @@ function getRandomInt(max) {
 function game()
 {
 
-    let playerScore =0
-    let computerScore =0 
-
-    for(let i=0;i<5;i++)
-    {
-        const playerSelection = prompt("Enter your choice")
-
-        if(playerSelection==null)
-        {
-            console.log("Game Ended")
-            return
-        }
-
-        let computerSelection = getComputerChoice()
-
-        let result = playRound(playerSelection, computerSelection)
-
-        console.log(result)
-
-        if(result.includes('win'))
-        {
-            playerScore++
-        } else if(result.includes('lose')){
-
-            computerScore++
-
-        } else if(result.includes('Draw')) {
-
-            //if draw both get point
-            playerScore++
-            computerScore++
-        } else {    
-
-            //if invalid choice cancel turn
-            i--;                                    
-            continue;
-        }
-    }
-
-
-
-
-    if(playerScore>computerScore)
-    {
-        console.log(`You won! Score: ${playerScore} - ${computerScore} `)
-    } else if(playerScore<computerScore){
-        console.log(`You lost! Score: ${playerScore} - ${computerScore} `)
-    } else {
-        console.log(`Draw! Score: ${playerScore} - ${computerScore} `)
-    }
 
    
+}
+
+
+function displayWinner(winner)
+{
+
+    gameSection.classList.add('hide');
+
+    winnerResult.textContent=winner;
 }
 
