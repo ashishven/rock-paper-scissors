@@ -2,19 +2,27 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+  
 }
 
-
 body{
-    display: flex;
+    overflow: hidden;
+}
+
+.play-scene-container{
+    display: none;
     flex-direction: column;
     justify-content: space-evenly;
     height:100vh;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+ 
 }
 
 
 .round-result-container{
-    transition: opacity 1s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
 .round-result-text{
@@ -31,8 +39,13 @@ body{
    
 }
 
-.outcome{
-    color: #FFB1B1;
+.outcome-lose{
+    color: #ff6565;
+}
+
+.outcome-win{
+    font-weight: 500;
+    color: #b1ffb1;
 }
 
 
@@ -74,6 +87,10 @@ img{
   }
 
 
+
+
+
+
   .hide{
     display: none;
     }
@@ -91,19 +108,12 @@ img{
         display: flex;
         justify-content: space-around;
         align-items: center;
+       
     }
 
-    .player-container{
-        display: flex;
-         gap: 1em;
-         align-items: center;
-    }
+    
 
-    .computer-container{
-        display: flex;
-        gap: 1em;
-        align-items: center;
-    }
+   
 
     .computer-score-icon , .player-score-icon{
 
@@ -116,23 +126,132 @@ img{
         font-weight: bold;
         display: flex;
         gap: .2em;
-        transition: opacity 1s;
+  
     }
 
     .add-one{
         font-size: 2rem;
         color: #FFB1B1;
         font-weight: bold;
-        transition: all 1s;
+        transform: scale(0);
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
        
     }
 
-    .scale-down{
-        transform: scale(0);
+    .fade-out{
+        animation-name: fadeOutRemove;
     }
 
-    .scale-up{
-        transform: scale(1);
+    @keyframes scaleUp {
+        from { transform: scale(0)}
+        to { transform: scaleX(1)}
+      }
+
+
+      @keyframes fadeOut {
+        0%   {opacity: 1;}
+     
+        100% {opacity: 0;}
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0}
+        to {  opacity: 1}
+      }
+
+
+
+
+
+
+
+    /* Selection screen styles */
+
+
+    .selection-scene-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height:100vh;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
     }
 
+    .selection-title-container{
+        flex-grow: 1;
+    }
+
+    .selection-title{
+        font-size: 5rem;
+        font-family: 'Jost', sans-serif;
+        font-weight: 500;
+        margin-left: 1em;
+        
+ 
+    }
+
+    .selection-scoreboard{
+        display: flex;
+        justify-content: end;
+        gap: 4em;
+        align-items: center;
+        flex-grow: 1;
+        width: 95%;
+        
+    }
+
+    .player-container, .computer-container{
+        display: flex;
+         gap: 1em;
+         align-items: center;
+    }
+
+    .selection-player-container, .selection-computer-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+       
+    }
+
+    .choice-container {
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        flex-grow: 2;
+        
+    }
+
+    .choice{
+        width: 20%;
+        transition: all .1s;
+        
+       
+    }
+
+    .choice-image{
+        background-color: #FFB1B1;
+        border-radius: 1em;
+        padding: 2em 0;
+    }
+
+    .choice:hover{
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    .choice-image img{
+        width: 70%;
+    }
+    .choice-text{
+        margin-top: 1em;
+        font-size: 2rem;
+        font-family: 'Jost', sans-serif;
+    }
+
+    
+
+    
     
