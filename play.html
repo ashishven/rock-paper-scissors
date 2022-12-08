@@ -253,8 +253,8 @@
         const playAgainButton = document.querySelector("#playAgain");
 
 
-        let currentPlayerScore = 0;
-        let currentComputerScore = 0;
+        let currentPlayerScore = 4;
+        let currentComputerScore = 4;
         let addOne = '';
 
 
@@ -299,6 +299,35 @@
 
         });
 
+
+
+
+        playAgainButton.addEventListener('click', (e) => {
+
+
+            winnerSceneContainer.style.animationName='fadeOut';
+
+            winnerSceneContainer.addEventListener('animationend', (e) => {
+
+                winnerSceneContainer.style.display = 'none';
+
+                currentComputerScore=0;
+                currentPlayerScore=0;
+                computerScore.forEach((c) => c.textContent = currentComputerScore);
+
+                playerScore.forEach((c) => c.textContent = currentPlayerScore);
+
+
+
+            
+                startSceneContainer.style.display = 'flex';
+                startSceneContainer.style.animationName = 'fadeIn';
+                event.stopPropagation();
+
+
+            }, { once: true });
+
+        });
 
 
 
