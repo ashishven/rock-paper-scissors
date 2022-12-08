@@ -88,7 +88,7 @@
                 <i class="fa-solid fa-user player-score-icon "></i>
                 <div class="score">
                     <div class="player-score">0</div>
-                  
+
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
                 <i class="fa-solid fa-robot computer-score-icon"></i>
                 <div class="score">
                     <div class="computer-score">0</div>
-                    
+
                 </div>
             </div>
 
@@ -137,6 +137,55 @@
 
 
 
+    <div class="winner-scene-container">
+
+
+
+        <div class="winner-result-container">
+
+
+            <div class="winner-result-text">Congratulations, You win!</div>
+
+
+
+        </div>
+
+
+        <div class="winner-scoreboard">
+
+
+            <div class="winner-player-container">
+                <i class="fa-solid fa-user player-score-icon "></i>
+                <div class="score">
+                    <div class="player-score">0</div>
+                    <div class="add-one">+1</div>
+                </div>
+            </div>
+
+            <div class="winner-computer-container">
+                <i class="fa-solid fa-robot computer-score-icon"></i>
+                <div class="score">
+                    <div class="computer-score">0</div>
+                    <div class="add-one">+1</div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="button-container">
+            <button id="playAgain">Play Again</button>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
 
 
     <script>
@@ -146,7 +195,7 @@
         const computer = document.querySelector('#rock2');
         const roundResult = document.querySelector('.round-result-container');
         const roundResultText = document.querySelector('.round-result-text');
-        
+
         const playerScore = document.querySelectorAll('.player-score');
         const computerScore = document.querySelectorAll('.computer-score');
         const playField = document.querySelector('.play-field');
@@ -156,15 +205,17 @@
         const computerContainer = document.querySelector('.computer-container');
         const playSceneContainer = document.querySelector('.play-scene-container');
         const selectionSceneContainer = document.querySelector('.selection-scene-container');
+        const winnerSceneContainer = document.querySelector('.winner-scene-container');
+        const winnerResultText = document.querySelector(".winner-result-text")
 
-        let currentPlayerScore=0;
-        let currentComputerScore=0;
+        let currentPlayerScore = 0;
+        let currentComputerScore = 0;
+        let addOne = '';
 
 
 
 
 
-   
 
 
 
@@ -200,160 +251,173 @@
 
         function playAnimation(playerSelection, computerSelection, result) {
 
-    
-            selectionSceneContainer.style.animationName='fadeOut';
 
-            selectionSceneContainer.addEventListener('animationend',(e)=>{
+            selectionSceneContainer.style.animationName = 'fadeOut';
 
-                event.stopPropagation();
-                selectionSceneContainer.style.display='none';
-                playSceneContainer.style.display='flex';
-                playSceneContainer.style.animationName='fadeIn';
-            
-            
-            },{once:true});
+            selectionSceneContainer.addEventListener('animationend', showPlayScene, { once: true });
 
 
 
             player.addEventListener('animationend', (e) => {
 
-               
-              
+
+
                 player.querySelector('img').src = playerSelection + ".svg";
                 computer.querySelector('img').src = computerSelection + ".svg";
 
-                roundResultText.innerHTML= result[0];
-                roundResult.style.animationName='fadeIn';
+                roundResultText.innerHTML = result[0];
+                roundResult.style.animationName = 'fadeIn';
 
                 event.stopPropagation();
 
                 roundResult.addEventListener('animationend', (e) => {
 
 
-                    let addOne='';
 
-                    if(result[1]=='1' || result=='-1')
-                    {
-                        addOne=document.querySelector('.player-container').querySelector('.add-one');
+
+                    if (result[1] == '1' || result == '-1') {
+                        addOne = document.querySelector('.player-container').querySelector('.add-one');
                     } else {
-                        addOne=document.querySelector('.computer-container').querySelector('.add-one');
+                        addOne = document.querySelector('.computer-container').querySelector('.add-one');
                     }
 
 
-                    if(result[1]=="-1")
-                    {
-                        playSceneContainer.style.animationName='fadeOut';
-                             addOne.style.opacity=1;
-                             
-                    
-                            event.stopPropagation();
+                    if (result[1] == "-1") {
+                        playSceneContainer.style.animationName = 'fadeOut';
+                        addOne.style.opacity = 1;
 
 
-                            playSceneContainer.addEventListener('animationend', (e) => {
-
-                            
-                               
-                                playSceneContainer.style.display='none';
-                                roundResult.style.animationName='';
-                                roundResult.style.opacity='0';
-                                player.querySelector('img').src = "rock.svg";
-                                computer.querySelector('img').src = "rock.svg";
-                                selectionSceneContainer.style.display='flex';
-                                selectionSceneContainer.style.animationName='fadeIn';
-
-                                event.stopPropagation();
-                            }, {once:true});
+                        event.stopPropagation();
 
 
-                            return;
+                        playSceneContainer.addEventListener('animationend', showSelectionScene, { once: true });
+
+
+                        return;
                     }
-                    
-                    addOne.style.animationDelay='.8s';
-                    addOne.style.animationName='scaleUp';
+
+                    addOne.style.animationDelay = '.8s';
+                    addOne.style.animationName = 'scaleUp';
 
                     event.stopPropagation();
 
 
-                    addOne.addEventListener('animationend', (e) => { 
+                    addOne.addEventListener('animationend', () => updateScore(result[1]), { once: true });
+
+
+
+
+
+
+                    addOne.addEventListener('animationend', (e) => {
+
+
+
+
+                        playSceneContainer.style.animationName = 'fadeOut';
+                        addOne.style.opacity = 1;
+
+
+                        event.stopPropagation();
+
+
+
+                        if (currentPlayerScore == 5 || currentComputerScore == 5) {
+
+                            playSceneContainer.addEventListener('animationend', ()=> showWinnerScene(result[1]), { once: true });
+                        } else {
+                            playSceneContainer.addEventListener('animationend', showSelectionScene, { once: true });
+                        }
+
+
                      
 
-                            if(result[1]=='1')
-                            {
-                                currentPlayerScore++;
-                                playerScore.forEach((p)=>p.textContent=currentPlayerScore);
-                            } else if(result[1]=='0')
-                            {
-                                currentComputerScore++;
-                                computerScore.forEach((c)=>c.textContent=currentComputerScore);
 
-                            }
-                            addOne.style.animationName='fadeOut';
-                            event.stopPropagation();
-
-                      },{once:true});
+                    }, { once: true });
 
 
 
 
 
-                      addOne.addEventListener('animationend', (e) => { 
-
-                             playSceneContainer.style.animationName='fadeOut';
-                             addOne.style.opacity=1;
-                             
-                    
-                            event.stopPropagation();
-
-
-                            playSceneContainer.addEventListener('animationend', (e) => {
-
-                            
-                               
-                                playSceneContainer.style.display='none';
-                                roundResult.style.animationName='';
-                                roundResult.style.opacity='0';
-                                player.querySelector('img').src = "rock.svg";
-                                computer.querySelector('img').src = "rock.svg";
-                                selectionSceneContainer.style.display='flex';
-                                selectionSceneContainer.style.animationName='fadeIn';
-
-                                event.stopPropagation();
-                            }, {once:true});
-
-                    
-                      },{once:true});
+                }, { once: true });
 
 
 
-                      
 
-                },{once:true});
-               
-            
-                
-           
 
-            },{once:true});
+            }, { once: true });
 
 
         }
 
 
-        /*playSceneContainer.addEventListener('transitionend', (e) => {
+
+        function showWinnerScene(result) {
+            playSceneContainer.style.display = 'none';
+            roundResult.style.animationName = '';
+            roundResult.style.opacity = '0';
+            player.querySelector('img').src = "rock.svg";
+            computer.querySelector('img').src = "rock.svg";
 
 
-            if (e.target.classList.contains('play-scene-container')) {
-
-
-                playSceneContainer.classList.add('hide');
-                playSceneContainer.classList.remove('disappear');
-                player.querySelector('img').src = "rock.svg";
-                computer.querySelector('img').src = "rock.svg";
-                selectionSceneContainer.classList.remove('hide');
-
+            if (result == '1') {
+                winnerResultText.innerHTML = 'Congratulations, You <span class="outcome-win">won!</span>'
+            } else {
+                winnerResultText.innerHTML = 'You <span class="outcome-lose">lost!</span> Better luck next time'
             }
 
-        });*/
+
+            winnerSceneContainer.style.display = 'flex';
+            winnerSceneContainer.style.animationName = 'fadeIn';
+
+            event.stopPropagation();
+        }
+
+
+
+        function showPlayScene() {
+            event.stopPropagation();
+            selectionSceneContainer.style.display = 'none';
+            playSceneContainer.style.display = 'flex';
+            playSceneContainer.style.animationName = 'fadeIn';
+        }
+
+
+        function showSelectionScene() {
+
+            playSceneContainer.style.display = 'none';
+            roundResult.style.animationName = '';
+            roundResult.style.opacity = '0';
+            player.querySelector('img').src = "rock.svg";
+            computer.querySelector('img').src = "rock.svg";
+            selectionSceneContainer.style.display = 'flex';
+            selectionSceneContainer.style.animationName = 'fadeIn';
+
+            event.stopPropagation();
+        }
+
+
+
+        function updateScore(result) {
+            {
+
+
+                if (result == '1') {
+                    currentPlayerScore++;
+                    playerScore.forEach((p) => p.textContent = currentPlayerScore);
+
+                } else if (result == '0') {
+                    currentComputerScore++;
+                    computerScore.forEach((c) => c.textContent = currentComputerScore);
+
+                }
+                addOne.style.animationName = 'fadeOut';
+                event.stopPropagation();
+
+            }
+        }
+
+
 
 
 
@@ -423,7 +487,7 @@
 
 
 
-        
+
 
 
         function fadeIn(el, time) {
@@ -458,7 +522,7 @@
 
             tick();
         }
-     
+
 
 
 

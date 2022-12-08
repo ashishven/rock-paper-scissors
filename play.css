@@ -45,7 +45,7 @@ body{
 
 .outcome-win{
     font-weight: 500;
-    color: #b1ffb1;
+    color: #FFB1B1;
 }
 
 
@@ -254,4 +254,57 @@ img{
     
 
     
+    /*Winner scene styles */
+
+    .winner-scene-container{
+        display: none;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height:100vh;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+     
+    }
+
+
+    .winner-scoreboard{
+        display: flex;
+        justify-content: center;
+        gap: 10em;
+        align-items: center;
+        width: 95%;
+        
+    }
+
+    .winner-player-container, .winner-computer-container
+    {
+
+        width: 15%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+
+    .winner-result-text{
+        text-align: center;
+        font-size: 4rem;
+        font-family: 'Jost', sans-serif;
+    }
+
+    #playAgain{
+        border: none;
+        padding: .5em 2em;
+        font-size: 2rem;
+        border-radius: .5em;
+        background-color: #FFB1B1;
+        font-family: 'Jost', sans-serif;
+        cursor: pointer;
+        transition: all .2s;
+    }
     
+
+    #playAgain:hover{
+        transform: scale(1.1);
+    }
