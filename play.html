@@ -6,8 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="play.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap');
+    </style>
+
+<script src="https://kit.fontawesome.com/a37b930fa8.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+
+    <div class="round-result-container  disappear">
+
+
+        <div class="round-result-text">You <span class="outcome ">win!</span> Scissors beats paper</div>
+
+
+    </div>
 
 
     <div class="play-field">
@@ -24,10 +44,36 @@
 
     </div>
 
+
+    <div class="scoreboard">
+
+
+        <div class="player-container">
+            <i class="fa-solid fa-user player-score-icon "></i>
+            <div class="score">
+                <div class="player-score">5</div> 
+                <div class="add-one scale-down">+1</div></div>
+        </div>
+
+        <div class="computer-container">
+            <i class="fa-solid fa-robot computer-score-icon"></i>
+            <div class="score">
+                <div class="computer-score">5</div> 
+                <div class="add-one scale-down">+1</div></div>
+        </div>
+        
+       
+
+
+    </div>
+
     <script>
         const player= document.querySelector('#rock1');
         const computer= document.querySelector('#rock2');
-        
+        const roundResult = document.querySelector('.round-result-container');
+        const addOne = document.querySelector('.add-one');
+        const playerScore = document.querySelector('.player-score');
+        const playField = document.querySelector('.play-field');
         
         player.addEventListener('animationend', (e) =>{
 
@@ -35,9 +81,26 @@
           
             player.querySelector('img').src="paper.svg";
             computer.querySelector('img').src="scissors.svg";
+            roundResult.classList.remove('disappear');
+            addOne.classList.remove('scale-down');  
             
+
         });
 
+
+        addOne.addEventListener('transitionend', (e) =>{
+
+            playerScore.textContent=6;
+            addOne.classList.add('disappear');
+
+
+            if(e.propertyName=="opacity")
+            {
+              //change scene
+            }
+
+
+        });
 
     </script>
    

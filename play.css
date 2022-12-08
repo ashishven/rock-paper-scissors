@@ -1,14 +1,38 @@
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height:100vh;
+}
+
+
+.round-result-container{
+    transition: opacity 1s;
+}
+
+.round-result-text{
+    text-align: center;
+    font-size: 4rem;
+    font-family: 'Jost', sans-serif;
+   
+}
+
+
 .play-field{
-    
     display: flex;
     justify-content: space-around;
+   
+}
+
+.outcome{
+    color: #FFB1B1;
 }
 
 
@@ -53,4 +77,62 @@ img{
   .hide{
     display: none;
     }
+
+    .disappear{
+        opacity: 0;
+    }
+    
+
+    .appear{
+        opacity: 100;
+    }
+
+    .scoreboard{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .player-container{
+        display: flex;
+         gap: 1em;
+         align-items: center;
+    }
+
+    .computer-container{
+        display: flex;
+        gap: 1em;
+        align-items: center;
+    }
+
+    .computer-score-icon , .player-score-icon{
+
+        font-size: 2.5rem;
+    }
+
+    .score{
+        font-size: 3.4rem;
+        font-family: 'Jost', sans-serif;
+        font-weight: bold;
+        display: flex;
+        gap: .2em;
+        transition: opacity 1s;
+    }
+
+    .add-one{
+        font-size: 2rem;
+        color: #FFB1B1;
+        font-weight: bold;
+        transition: all 1s;
+       
+    }
+
+    .scale-down{
+        transform: scale(0);
+    }
+
+    .scale-up{
+        transform: scale(1);
+    }
+
     
