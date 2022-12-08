@@ -23,6 +23,41 @@
 
 <body>
 
+
+    <div class="start-scene-container">
+
+        <div class="game-title-container">
+
+
+            <div class="game-title">Rock Paper Scissors Game</div>
+
+        </div>
+
+
+        <div class="button-container">
+            <button id="startGame">Start Game</button>
+        </div>
+
+
+    </div>
+
+    <div class="info-scene-container">
+
+        <div class="info-title-container">
+
+
+            <div class="info-title">First to 5 points wins</div>
+
+        </div>
+
+
+ 
+
+
+    </div>
+
+
+
     <div class="play-scene-container">
 
 
@@ -51,6 +86,7 @@
 
         </div>
 
+        
 
         <div class="scoreboard">
 
@@ -206,7 +242,16 @@
         const playSceneContainer = document.querySelector('.play-scene-container');
         const selectionSceneContainer = document.querySelector('.selection-scene-container');
         const winnerSceneContainer = document.querySelector('.winner-scene-container');
+        const startSceneContainer = document.querySelector('.start-scene-container');
+
+        const infoSceneContainer = document.querySelector('.info-scene-container');
+
+
         const winnerResultText = document.querySelector(".winner-result-text")
+
+        const startGameButton = document.querySelector("#startGame");
+        const playAgainButton = document.querySelector("#playAgain");
+
 
         let currentPlayerScore = 0;
         let currentComputerScore = 0;
@@ -214,14 +259,50 @@
 
 
 
-
-
-
-
-
-
-
         //START
+
+
+        startGameButton.addEventListener('click', (e) => {
+            startSceneContainer.style.animationName = 'fadeOut';
+
+            startSceneContainer.addEventListener('animationend', (e) => {
+
+                startSceneContainer.style.display = 'none';
+                infoSceneContainer.style.display = 'flex';
+                infoSceneContainer.style.animationName = 'fadeIn';
+                event.stopPropagation();
+
+                infoSceneContainer.addEventListener('animationend', (e) => {
+
+                    infoSceneContainer.style.animationDelay = "1s";
+                    infoSceneContainer.style.animationName = 'fadeOut';
+
+                    event.stopPropagation();
+
+                    infoSceneContainer.addEventListener('animationend', (e) => {
+
+                          infoSceneContainer.style.display = 'none';
+                          infoSceneContainer.style.animationDelay = "";
+                          selectionSceneContainer.style.display = 'flex';
+                          selectionSceneContainer.style.animationName = 'fadeIn';
+                          event.stopPropagation();
+
+
+                    }, { once: true });
+
+                }, { once: true });
+
+
+            }, { once: true });
+
+
+
+        });
+
+
+
+
+
 
         const choices = document.querySelectorAll('.choice-image')
 
@@ -239,8 +320,13 @@
                 playAnimation(playerSelection, computerSelection, result);
 
 
+
+
             });
         })
+
+
+
 
 
 
@@ -324,13 +410,13 @@
 
                         if (currentPlayerScore == 5 || currentComputerScore == 5) {
 
-                            playSceneContainer.addEventListener('animationend', ()=> showWinnerScene(result[1]), { once: true });
+                            playSceneContainer.addEventListener('animationend', () => showWinnerScene(result[1]), { once: true });
                         } else {
                             playSceneContainer.addEventListener('animationend', showSelectionScene, { once: true });
                         }
 
 
-                     
+
 
 
                     }, { once: true });

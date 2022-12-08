@@ -170,7 +170,7 @@ img{
 
 
     .selection-scene-container{
-        display: flex;
+        display: none;
         flex-direction: column;
         justify-content: space-evenly;
         height:100vh;
@@ -307,4 +307,75 @@ img{
 
     #playAgain:hover{
         transform: scale(1.1);
+    }
+
+
+
+
+
+
+    /* Start scene */
+
+    .start-scene-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height:100vh;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        align-items: center;
+        gap: 6em;
+    
+    }
+
+
+    .game-title-container{
+        width: 45%;
+   
+    }
+
+    .game-title{
+        font-size: 5rem;
+        font-family: 'Jost', sans-serif;
+        font-weight: bold;
+     
+    }
+
+    #startGame{
+        border: none;
+        padding: .5em 2em;
+        font-size: 2.5rem;
+        border-radius: .5em;
+        background-color: #FFB1B1;
+        font-family: 'Jost', sans-serif;
+        cursor: pointer;
+        transition: all .2s;
+    }
+
+
+    #startGame:hover{
+        transform: scale(1.1);
+    }
+
+
+    /* INfo scene */
+
+    .info-scene-container{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        height:100vh;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        align-items: center;
+
+    
+    }
+
+
+    .info-title{
+        font-size: 3rem;
+        font-family: 'Jost', sans-serif;
+
+     
     }
