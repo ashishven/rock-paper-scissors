@@ -5,7 +5,7 @@
 
 <br>
 
-<img src="rpic2.png" style="border: 1px solid black" width="80%">
+<img src="rpic2.png" style="text-align: center" width="80%">
 <br>
 <img src="rpic1.png"style="border: 1px solid black" width="80%">
 <br>
